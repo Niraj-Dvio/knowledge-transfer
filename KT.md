@@ -2,7 +2,7 @@
 
 ## 📋 Document Information
 
-- **Role:** Software Engineer (Frontend Developer)
+- **Role:** Software Engineer (SDE-1)
 - **Team/Product:** DViO One
 - **Tenure:** 1 year 6 months
 - **Last Working Day:** January 30, 2026
@@ -41,6 +41,14 @@ As the Frontend Developer for DViO One, responsibilities included:
 | Frontend Team  |  Aman, Kanak | Day-to-day frontend coordination, credentials access |
 | Credential Access | Kailash (primary) | Primary contact for all account credentials |
 
+### 1.4 Important URLs
+
+| URL | Purpose |
+|-----|---------|
+| [dvio.one](https://dvio.one) | Landing page |
+| [app.dvio.one](https://app.dvio.one) | Web application (Production) |
+| [node-2.dvio.one](https://node-2.dvio.one) | Backend API |
+
 ---
 
 ## 2. Systems & Architecture
@@ -52,13 +60,13 @@ DViO One is a single product with a React-based frontend consuming backend APIs.
 ```
 ┌─────────────────┐
 │   Flamingo      │  React Router v7 Frontend
-│   (Frontend)    │  
+│   (Frontend)    │  (app.dvio.one)
 └────────┬────────┘
          │
          ↓ API Calls
 ┌─────────────────┐
 │   Stardust      │  FastAPI Backend
-│   (Backend)     │
+│   (Backend)     │  (node-2.dvio.one)
 └────────┬────────┘
          │
          ↓
@@ -99,7 +107,7 @@ DViO One is a single product with a React-based frontend consuming backend APIs.
 | MySQL | Primary database |
 | Redis | Caching layer |
 | Snowflake | Data warehouse |
-| Airbyte | ELT connector platform |
+| [Airbyte](https://airbyte.com) | ELT connector platform (Powered by Airbyte) |
 | Temporal | Workflow orchestration |
 | AWS Bedrock | AI/ML services |
 | Langfuse | AI observability |
@@ -117,11 +125,11 @@ DViO One is a single product with a React-based frontend consuming backend APIs.
 
 ### 2.4 Environments
 
-| Environment | Purpose | Access |
-|-------------|---------|--------|
-| **Local** | Primary development environment | All developers |
-| **Production** | Live customer-facing environment | Managed by Preetesh |
-| **Staging (Workaround)** | Cloudflare Tunnel exposing local services to tunnel domain | Used as needed |
+| Environment | Purpose | Access | URL |
+|-------------|---------|--------|-----|
+| **Local** | Primary development environment | All developers | localhost |
+| **Production** | Live customer-facing environment | Managed by Preetesh | app.dvio.one |
+| **Staging (Workaround)** | Cloudflare Tunnel exposing local services to tunnel domain | Used as needed | - |
 
 **Note:** Deployment is fully managed by Preetesh. No CI/CD pipeline is currently configured.
 
@@ -151,7 +159,7 @@ The frontend requires:
 - Microsoft Clarity key
 - Sentry keys
 - CSRF keys
-- Backend host URL
+- Backend host URL (node-2.dvio.one)
 
 **Credentials Access:** All credentials have been shared with team members. Contact **Kailash** or any frontend team member (Aman, Kanak) for access.
 
@@ -224,7 +232,7 @@ Dashboard to view and analyze competitor Facebook and Instagram metrics with end
 - API: `/social/competitors`
 
 **External Integrations:**
-- Meta Graph API (Facebook & Instagram Insights)
+- [Meta Graph API](https://developers.facebook.com/docs/graph-api/) (Facebook & Instagram Insights)
 
 #### Platform & Compliance Work
 - Handled Facebook App requests and feature approvals related to competitor analytics
@@ -270,9 +278,9 @@ Snowflake (Data Warehouse)
 Meta App permissions and features are requested incrementally based on product needs.
 
 **Request Process:**
-1. Create demo screen recording following Meta's review guidelines
+1. Create demo screen recording following [Meta's review guidelines](https://developers.facebook.com/docs/app-review/)
 2. Provide clear explanation of feature usage and data flow
-3. Submit request through Meta App Dashboard
+3. Submit request through [Meta App Dashboard](https://developers.facebook.com/apps/)
 4. Wait for approval (typically 5-7 business days)
 
 **Requirements for Video Demo:**
@@ -280,6 +288,11 @@ Meta App permissions and features are requested incrementally based on product n
 - Should clearly demonstrate the use case
 - Must follow Meta's specific recording guidelines
 - Should show actual product functionality
+
+**Useful Resources:**
+- [Meta Graph API Documentation](https://developers.facebook.com/docs/graph-api/)
+- [Meta App Review Process](https://developers.facebook.com/docs/app-review/)
+- [Meta Business Tools](https://business.facebook.com/)
 
 #### Important Notes & Gotchas
 
@@ -330,10 +343,13 @@ The AI integration evolved from simple summary generation to a **two-way AI chat
 
 #### Airbyte Connectors
 
-Standard ELT integrations for common data sources:
+Standard ELT integrations for common data sources powered by [Airbyte](https://airbyte.com):
 - Scheduled and monitored via backend workflows
 - Managed through Airbyte UI
 - Status should be checked weekly
+
+**About Airbyte:**
+DViO One leverages Airbyte's open-source ELT platform for reliable data integration from various sources into our data warehouse.
 
 #### Custom ELT Pipelines (Temporal)
 
@@ -371,6 +387,11 @@ Support for manual data uploads:
 - Meta Business Suite
 - Individual page access tokens
 
+**Access Points:**
+- [Meta for Developers](https://developers.facebook.com/)
+- [Meta Business Suite](https://business.facebook.com/)
+- [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+
 #### Feature Request Process
 
 When new features or permissions are needed:
@@ -378,7 +399,7 @@ When new features or permissions are needed:
 1. **Preparation:**
    - Clearly define the use case
    - Determine which permissions are needed
-   - Check Meta's documentation for requirements
+   - Check [Meta's documentation](https://developers.facebook.com/docs/) for requirements
 
 2. **Demo Recording:**
    - Record screen demonstration showing the feature in action
@@ -387,7 +408,7 @@ When new features or permissions are needed:
    - Keep it concise but comprehensive
 
 3. **Submission:**
-   - Fill out Meta App Review form
+   - Fill out [Meta App Review form](https://developers.facebook.com/docs/app-review/)
    - Upload demo video
    - Provide detailed written explanation
    - Submit for review
@@ -464,7 +485,7 @@ Meta (Facebook & Instagram) requires special attention:
 
 3. **Demo Video Requirements:**
    - Mandatory for most permission requests
-   - Must follow Meta's specific guidelines
+   - Must follow [Meta's specific guidelines](https://developers.facebook.com/docs/app-review/screencast)
    - English subtitles are required
    - Must clearly prove the stated use case
 
@@ -553,8 +574,18 @@ docker compose build # Build docker image
 docker compose up -d    # Start development server
 ```
 
+### 9.2 Important Links
 
-### 9.2 Emergency Contacts
+| Resource | URL |
+|----------|-----|
+| Landing Page | [dvio.one](https://dvio.one) |
+| Web Application | [app.dvio.one](https://app.dvio.one) |
+| Backend API | [node-2.dvio.one](https://node-2.dvio.one) |
+| Meta Graph API Docs | [developers.facebook.com/docs/graph-api/](https://developers.facebook.com/docs/graph-api/) |
+| Meta App Review | [developers.facebook.com/docs/app-review/](https://developers.facebook.com/docs/app-review/) |
+| Airbyte | [airbyte.com](https://airbyte.com) |
+
+### 9.3 Emergency Contacts
 
 | Issue Type | Contact Person | Notes |
 |------------|----------------|-------|
@@ -568,7 +599,7 @@ docker compose up -d    # Start development server
 
 ## 10. Closing Notes
 
-This document represents the collective knowledge from 1.5 years of building and maintaining DViO One's frontend. The product has undergone significant evolution, including multiple framework migrations and architectural improvements.
+This document represents the collective knowledge from 1.6 years of building and maintaining DViO One. The product has undergone significant evolution, including multiple framework migrations and architectural improvements.
 
 **Key Takeaways:**
 
@@ -576,7 +607,7 @@ This document represents the collective knowledge from 1.5 years of building and
 2. **External Integrations Work Well:** Especially Meta integration, though it requires ongoing maintenance
 3. **Requirements Process Needs Improvement:** Implementing a sign-off document would significantly reduce rework
 4. **Monitoring is Critical:** Regular checks on Sentry, Clarity, and Airbyte prevent issues from escalating
-5. **Team is Capable:** The frontend team ( Aman, Kanak) can collectively handle all responsibilities
+5. **Team is Capable:** The frontend team (Aman, Kanak) can collectively handle all responsibilities
 
 **For Questions:**
 - Technical: Contact team members (Kailash, Aman, Kanak)
@@ -584,4 +615,3 @@ This document represents the collective knowledge from 1.5 years of building and
 - Access: Contact Kailash
 
 ---
-
